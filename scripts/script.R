@@ -108,3 +108,31 @@ stats_pop %>%
        subtitle = paste0("1950 - 2018"),
        caption = "Source Data: Bureau of Transportation Statistics, US Census Bureau")
 
+stats_pop %>% 
+  filter(Measures == "Licensed drivers") %>% 
+  ggplot(aes(x=Year,
+             y = value_normalized_thousands))+
+  geom_line()+
+  facet_wrap(~State)+
+  labs(x = NULL,
+       y = "Licensed Drivers per 1,000 Residents",
+       title = "Licensed Drivers",
+       subtitle = paste0("1950 - 2018"),
+       caption = "Source Data: Bureau of Transportation Statistics, US Census Bureau")+
+  theme(text = element_text(family = "SourceSansPro-Light", color = "grey10", lineheight = 0.5),   
+        legend.position="right",legend.direction="vertical",
+        legend.title = element_text(lineheight = .8),
+        legend.key.height=grid::unit(0.8,"cm"),
+        legend.key.width=grid::unit(0.2,"cm"),
+        plot.title = element_text(family = "SourceSansPro-Regular", size = 20, hjust = 0),
+        plot.subtitle = element_text(size = 15, hjust = 0),
+        plot.caption = element_text(size = 10, color = "grey50"),
+        axis.ticks=element_blank(),
+        plot.background=element_blank(),
+        panel.border=element_blank(),
+        plot.margin=margin(0.7,0.4,0.1,0.2,"cm"),
+        panel.background = element_blank(),
+        strip.background = element_rect(colour="grey",
+                                        fill="white"))
+
+ggsave("output/facet_wrap.png")
