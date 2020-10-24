@@ -30,7 +30,7 @@ stats_pop %>%
   geom_tile(colour="white",size=0.2)+
   guides(fill=guide_legend(title="Licensed drivers\nper 1,000 residents"))+
   scale_fill_distiller(palette = "RdYlGn")+
-  xlim(1950,2018)+
+  xlim(1949,2020)+
   theme(text = element_text(family = "SourceSansPro-Light", color = "grey10", lineheight = 0.5),   
         legend.position="right",legend.direction="vertical",
         legend.title = element_text(lineheight = .8),
@@ -49,6 +49,8 @@ stats_pop %>%
        title = "Licensed Drivers",
        subtitle = paste0("1950 - 2018"),
        caption = "Source Data: Bureau of Transportation Statistics, US Census Bureau")
+
+ggsave("output/licensed_drivers.png")
 
 stats_pop %>% 
   filter(Measures == "Highway Fatalities") %>% 
